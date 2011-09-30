@@ -1,0 +1,10 @@
+# sample crontab
+
+SHELL=/bin/sh
+BOTDIR=~/gbot/
+
+# m h dom mon dow user	command
+
+0-59 * * * * cd $BOTDIR ; ./run-bot
+
+

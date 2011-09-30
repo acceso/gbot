@@ -1,0 +1,38 @@
+#!/bin/sh
+
+#GCC=g++
+#GCC=gcc-2.95
+#GCC=icc
+
+cd build 
+./clean-all
+cd ..
+
+
+set -x
+aclocal || exit 1
+autoheader
+automake --foreign
+autoconf
+
+cd build 
+./clean-dist
+cd ..
+
+set +x
+
+# exit 0
+
+CFG_FLAGS="--enable-debug "
+# postponed:
+#  --enable-profiling"
+
+if test "${CC}" = "" ; then
+./configure $CFG_FLAGS
+else
+CC=$GCC ./configure $CFG_FLAGS $*
+fi
+
+# make
+
+exit 0

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cd ..
+
+rm -f autom4te.cache/*
+[ -d autom4te.cache ] && rmdir autom4te.cache
+# [ -r Makefile ] && make clean
+rm -f aclocal.m4 config.log configure config.status 
+rm -f src/config.h.in src/config.h src/stamp-h.in src/stamp-h*
+rm -f Makefile Makefile.in src/Makefile src/Makefile.in scripts/Makefile scripts/Makefile.in
+rm -f config.cache confcache
+rm -f src/.deps/* scripts/.deps/*
+rm -f src/stamp-h1
+rmdir src/.deps 2> /dev/null
+rmdir scripts/.deps 2> /dev/null
+
+# cd -
+

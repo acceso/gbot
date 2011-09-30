@@ -1,0 +1,16 @@
+gbot.syntax
+-----------
+
+gbot.syntax is a syntax file for mcedit,
+to make it work add this two lines to ~/.mc/cedit/Syntax :
+
+file events\.conf$ Gbot\sConfiguration
+include gbot.syntax
+
+Note: now the bot can use numeric events, this breaks in some way the colors,
+I think I won't waste more time to make this work.
+
+
+
+
+

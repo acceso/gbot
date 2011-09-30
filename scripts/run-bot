@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+BOTPS=`ps -A | grep -v grep | grep gbot`
+
+if [ -z "$BOTPS" ]; then
+# not running
+	BPID='0'
+else 
+	BPID=`echo $BOTPS | cut -d' ' -f 1`
+fi
+
+#
+
+if [ $BPID == '0' ]; then
+	if [ `pwd` == "/home/jose/.gbot" ]; then
+		./gbot
+	else
+		gbot
+	fi
+fi
+

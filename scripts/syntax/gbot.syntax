@@ -1,0 +1,290 @@
+# mcedit syntax file por events.conf
+
+# No keywords here, 
+# remark default text as is not allowed.
+context default white
+
+# Comments and words within them.
+context linestart # \n brown
+	keyword FIXME brightred
+	keyword TODO brightred
+	keyword BUG brightred
+
+# every kind of line has it's own context,
+# thes makes some keywords to be repeated.
+# For now I will just add words when I use them
+# in my events file.
+context linestart ANY \n lightgray
+	keyword linestart ANY green
+# Common keywords:
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+#	 end common keywords.
+
+
+context linestart PRIVMSG \n lightgray
+	keyword linestart PRIVMSG green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart CTCP \n lightgray
+	keyword linestart CTCP green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart PING \n lightgray
+	keyword linestart PING green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+context linestart MODE \n lightgray
+	keyword linestart MODE green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart JOIN \n lightgray
+	keyword linestart JOIN green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart NICK \n lightgray
+	keyword linestart NICK green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart QUIT \n lightgray
+	keyword linestart QUIT green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart TOPIC \n lightgray
+	keyword linestart TOPIC green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart KICK \n lightgray
+	keyword linestart KICK green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart NOTICE \n lightgray
+	keyword linestart NOTICE green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart PART \n lightgray
+	keyword linestart PART green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+context linestart INVITE \n lightgray
+	keyword linestart INVITE green
+#
+	keyword : white
+	keyword { brightcyan
+	keyword } brightcyan
+	keyword ${*} brightblue
+	keyword JOIN yellow
+	keyword KICK yellow
+	keyword LOG yellow
+	keyword MODE yellow
+	keyword NOTICE yellow
+	keyword NULL yellow
+	keyword PART yellow
+	keyword PONG yellow
+	keyword PRIVMSG yellow
+	keyword QUIT yellow
+	keyword RELOAD yellow
+	keyword TOPIC yellow
+
+
+

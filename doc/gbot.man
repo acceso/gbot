@@ -1,0 +1,73 @@
+.TH gbot 1
+.SH NAME
+gbot\- A small irc bot
+.SH SYNOPSIS
+gbot [ options ] server
+
+.SH DESCRIPTION
+The 
+.B gbot
+command launches a small irc bot on background,
+
+.SH OPTIONS
+
+.TP
+.B -h
+Help
+
+.TP
+.B -n nick
+Nick for the bot.
+
+.TP
+.B -i ident
+If there is no ident server running uses ident ident.
+
+.TP
+.B -f fullname
+Fullname for the bot.
+
+.TP
+.B -o password
+Connection password, most times useless.
+
+.TP
+.B -r port
+Server port.
+
+.TP
+.B -p botpass
+User password to control the bot.
+
+.TP
+.B -a adminpass
+Launch the bot using pasword adminpass as admin password.
+
+.TP
+.B -e eventsfile
+To specify an events file diferent than the default.
+
+
+
+.SH CONFIG FILE FORMAT
+
+Lines beginning with a hash sign, 
+.RB ` # ',
+are comments and will be ignored
+as will be blank lines.
+
+.TP
+.I ~/.gbot/gbot.conf
+Main config file.
+
+.TP
+.I ~/.gbot/events.conf
+Default events file.
+
+.SH BUGS
+Thousands!!!
+
+.SH AUTHOR
+José Sánchez <jose@helcom.es>
+
+

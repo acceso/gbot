@@ -1,0 +1,39 @@
+
+Gbot is a simple and yet powerful IRC bot.
+
+
+Its configuration file is based on events, these are some examples:
+
+
+# Needed ping-pong event:
+PING:::::n:PONG :${1}
+
+# This logs every line, 'c' means "continue with more events":
+ANY:::::c:log()
+
+# Gives op to "user*" with any ident and host and it happens on every channel (#*),
+# it also says hello to that user when joining to the channel:
+esta linea me da op y me saluda cuando me uno a cualquier canal:
+JOIN:#*:user*!*@*::::MODE ${chan} +o ${nick}${SEP}PRIVMSG ${chan} :hi ${nick}!
+
+# It joins automatically to #channel:
+001::::::JOIN #channel
+
+# This is probably the shortest CTCP implementation ever (4 lines, see full config):
+CTCP:::^TIME:::NOTICE ${nick} :TIME ${date} ${time}
+
+# We can make the bot speak for us:
+PRIVMSG:::${pass}[ ]say[ ]+.+[ ]+.+:::PRIVMSG ${3} :${4*}
+
+# It sends the output of "ls -l",
+# 't' means it's done on a new thread.
+PRIVMSG:#*::\\::t:${LSYSTEM ls -l}
+
+# These two are chained. 
+# The first one just matches if the second one has previously matched:
+PRIVMSG:#*::\\[ ]*\\[ ]*\\?:${cond are > 1}${del are}::PRIVMSG ${chan} :sample2
+PRIVMSG:#*::\\[ ]+\\[ ]*\\?:${set are = 1}::PRIVMSG ${chan} :sample1
+
+
+
+

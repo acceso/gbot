@@ -1,0 +1,89 @@
+gbot-XXXXXX
+-----------
+()
+
+- An event with this condition: ${cond null % 20} should match out of five
+  times, this didn't work before (it mached four out five), it does now.
+- IPv6 support.
+- Re-tested under opensolaris/intel
+
+
+gbot-051103
+-----------
+(Silent bot)
+
+- Log in lowercase.
+- Further autotools work:
+	- Made dist-gzip et al. work.
+	- regex script it's now compiled but not installed
+	- add more --enable... --disable.. checks.
+- Basic support for CTCP: action logged right, version, ping, userinfo and 
+  time. Mostly implemented in the events file!!
+- Bot ported to the Darwin kernel (MacOs X). There is a bug though, and
+  regular expressions with \< and \> never match (10.4 not tested, I want
+  a full xcode port).
+- The bot can handle more than one flag on every event, if there are two
+  exclusive flags, the first one takes precedence.
+- Added a new flag: 't', to match events on a different thread, this is
+  good for events which take long.
+- Added a new variable: query, it behaves like ${chan} if the event match
+  in a channel or like ${nick} if the event match in a query.
+- Added a new variable: system, now we can do things like: ${SYSTEM ls -l}.
+  As this variable strips '\n's and '\r's, it has also been added lsystem,
+  which converts every line to a privmsg $query :text...
+
+
+
+gbot-040603
+-----------
+(Summer again)
+
+- Changed fnmatch() to regexes in events (compile-time optional).
+- Regular expressions are now pre-expanded when reading events file,
+  this should speed up matching.
+- SIGHUP now reload_events ()
+- Main cfg file now accepts blanks around '='
+- Use mmap () for config files
+- Added a new field in the events file: cond
+- Now it is possible use variables and chain events: ${set var = val},
+  some variables are: set, cond, del and print, and operators
+  are: ==, ++, +=, -=, ++, --
+- Some events launched too often, added a percentual operator,
+  a condition like: ${cond null % 20} would match 20% of the times.
+- A syntax file for mc is now included under scripts/syntax,
+  I like fancy colors.
+- Numeric events are now allowed in the events file, for example:
+  001::::::join #channel
+  would give us autojoin.
+- Own commands are now tagged when reading the events file instead of
+  when a line was sent, should be faster.
+- When lines were too long in events.conf, some text was not discarded
+  but read as a new event, obviously this text was not a valid event
+  and an error popped out, this is now fixed.
+- Internal function calling from the events file has changed from:
+  "func" to "func ( )" (spaces are optional)
+- Regexes can have a colon inside if scaped: \: means :, \\: means \:,
+  \< means \< and : means the end of the regex as before.
+- Plenty of small typos and some bugs that didn't shown have been fixed
+  after the use of lint.
+- Regexes now can be longer and is possible to change REGEX_LENGHT at 
+  compile time to make it longer or shorter.
+- Messages with more than one mode should now be handled correctly.
+- Logging improved a little.
+- Server messages are now logged in a status file.
+
+
+
+gbot-030803
+-----------
+(Marina Palace)
+
+- Sources placed under CVS.
+- Fixes to let it work in: windows (cygwin), openbsd and freebsd.
+- Log again bot messages, also multilined.
+- Fixed a bug which made the bot fail when an auto launched itself.
+- Much improved do_log ().
+- Fixed a bug which showed bot's password in the log (irc-hispano).
+- New variables: ${date} y ${time}.
+- Improved configure.ac.
+

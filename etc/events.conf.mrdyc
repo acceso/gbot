@@ -1,0 +1,69 @@
+# event:channel:user!ident@server:text:cond:options:command...
+
+PING:::::n:PONG :${1}
+
+# ignore suckers
+ANY::nick*!*@*::i::null()
+ANY::agenda*!*@*:::i:null()
+
+# do unconditional logging
+ANY:::::c:log()
+
+# Autoop
+JOIN:#*:gemi*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:Vikius*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:Jaguar*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:Dino*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:ELKuR*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:*Chex*!*@*::::MODE ${chan} +o ${nick}
+#JOIN:#*:puenflas*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:*moody*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:*Rudy*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:ancabe*!*@*::::MODE ${chan} +o ${nick}
+JOIN:#*:cule*!*@*::::MODE ${chan} +o ${nick}
+
+# auto join
+#001:::::c:PRIVMSG nickserv@services.dal.net :identify XXXXXXXX
+001::::::JOIN #dyc
+
+# protect myself :) (note: when I deop myself it gives and removes op to myself, should check if ${nick} == ${3} (3?))
+MODE:#*::-o[ ]+gemi:::MODE ${chan} +o acceso${SEP}MODE ${chan} -o ${nick}
+
+# CTCP
+# the markers are defined as ((char)1), ^V^A under vi generate this char.
+CTCP:::^VERSION:::NOTICE ${nick} :VERSION Gbot-dev Linux2.6 <jose@helcom.es>
+# for now it's not possible to wait the pong and calculate the time
+CTCP:::^PING:::NOTICE ${nick} :PONG ${2*}
+CTCP:::^USERINFO:::NOTICE ${nick} :ACTION the most powerful bot ever!
+# This doesn't meet standards, but I won't be adding a ${rfc822date} for now...
+CTCP:::^TIME:::NOTICE ${nick} :TIME ${date} ${time}
+
+PRIVMSG:::${pass}[ ]say[ ]+.+[ ]+.+:::PRIVMSG ${3} :${4*}
+PRIVMSG:::${pass}[ ]opea[ ]+.+[ ]+.+:::MODE ${3} +o ${4}
+PRIVMSG:::${pass}[ ]opeame:::MODE ${3} +o ${nick}
+PRIVMSG:::${pass}[ ]deopea[ ]+.+[ ]+.+:::MODE ${3} -o ${4}
+PRIVMSG:::${pass}[ ]davoz[ ]+.+[ ]+.+:::MODE ${3} +v ${4}
+PRIVMSG:::${pass}[ ]quitavoz[ ]+.+[ ]+.+:::MODE ${3} -v ${4}
+PRIVMSG:::${pass}[ ]topic[ ]+.+[ ]+.+:::TOPIC ${3} :${4*}
+PRIVMSG:::${pass}[ ]kick[ ]+.+[ ]+.+:::KICK ${3} :${4*}
+PRIVMSG:::${pass}[ ]+.+:::NOTICE ${nick} :Comando desconocido o argumentos no válidos, sigue intentandolo.
+
+PRIVMSG:::${op_pass}[ ]+reload[ ]*:::reload()
+PRIVMSG:::${op_pass}[ ]+part[ ]+[#].+:::PART ${3}
+PRIVMSG:::${op_pass}[ ]+join[ ].+:::JOIN ${3}
+PRIVMSG:::${op_pass}[ ]+quit[ ]*$:::QUIT :Bot exited
+PRIVMSG:::${op_pass}[ ]+quit[ ]+.+:::QUIT :${3*}
+PRIVMSG:::${op_pass}[ ]+raw[ ]+.*:::${3*}
+
+# uses of the new system function:
+PRIVMSG:#*::\<il[uú]strame\>::t:${LSYSTEM /home/jose/usr/bin/latinfortune -s local}
+PRIVMSG:#*::\<ofendeme\>::t:${LSYSTEM /home/jose/usr/bin/latinfortune -os}
+PRIVMSG:#*::\<murphy\>::t:${LSYSTEM /home/jose/usr/bin/latinfortune -s murphy}
+
+
+# Text in channels.
+# PRIVMSG:#*::\<regex\>:::PRIVMSG ${chan} :
+PRIVMSG:#*::\<gracias\>.*MrDyc:::PRIVMSG ${chan} :No hay de que ${nick}!
+PRIVMSG:#*:Jaguar*!*@*:\<medal\>:::PRIVMSG ${chan} :raro raro raro .. . . .
+PRIVMSG:#*:Jaguar_!*@*:\<hoy\>[ ]+\<salgo\>:${cond null % 50}::PRIVMSG ${chan} :(me extraña)
+

@@ -1,0 +1,26 @@
+# server ip IP or host
+#SERVER=irc.irc-hispano.org
+#SERVER=omega.irc-hispano.org
+SERVER=thebe.irc-hispano.org
+
+# Bot nick
+NICK=MrDyc
+
+# user id for the bot, overriden by an ident server
+IDENT=MrDyc
+
+# Fullname
+NAME='One bot to rule \'em all'
+
+# Connection password
+SERVPASS=ejem
+
+# Server port
+PORT=6667
+
+# Normal user password
+BOTPASS=gemix
+
+# Admin password
+OP_PASS=gems
+
