@@ -13,7 +13,6 @@ ANY:::::c:log()
 
 # Gives op to "user*" with any ident and host and it happens on every channel (#*),
 # it also says hello to that user when joining to the channel:
-esta linea me da op y me saluda cuando me uno a cualquier canal:
 JOIN:#*:user*!*@*::::MODE ${chan} +o ${nick}${SEP}PRIVMSG ${chan} :hi ${nick}!
 
 # It joins automatically to #channel:
