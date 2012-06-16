@@ -7,7 +7,7 @@
 
 /* Server ----------------------------------------------------*/
 #define DEFAULT_PORT		6667
-#define DEFAULT_IDENT		"cerdas"
+#define DEFAULT_IDENT		"myident"
 #define DEFAULT_FULLNAME	"Lost freak"
 #define DEFAULT_HOST		"irc.irc-hispano.org"
 #define DEFAULT_VHOST		"x.x.x.x"

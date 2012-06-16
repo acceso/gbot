@@ -20,9 +20,6 @@ botsend (struct _server *server, const char *data)
 	printf ("\n-->%s", data);
 #endif /* DEBUG */
 
-	/* FIXME: session control will check here commands I send */
-
-
 	/* The gnu libc manual says: "The write function is the underlying 
 	 * primitive for all of the functions that write to streams", and the
 	 * stdio man pages say flock and friends use locks, so a lock shouldn't
@@ -82,57 +79,7 @@ count_multi (const char *data, unsigned int *modes_left)
 				while (*data != '+' && *data != '-' && *data != '\0')
 					data++;
 		}
-#ifndef DEAD_CODE
 	}
-#else
-	/* Note: I think these messages are obsoleted, 
-	 * I have been unable to repreoduce them from any server,
-	 * this code is UNTESTED
-	 */
-	} else if (strncasecmp (data, "KICK ", 5) == 0) {
-		/* Descriptive examples: "KICK ...
-		 * #chan1 nick1 :reason"; #chan1,#chan2 nick1,nick2,nick3 :reason 
-		 */
-		unsigned int factor = 1;
-
-		*modes_left = 1;
-		data += 5;
-		while (*data == ' ')
-			data++;
-		while (*data != ' ' && *data != '\0') { /* The != '\0' is just a safety check */
-			/* If there is no ',' everything is ok, factor == 1.
-			 * One nick more for every ',' until a ' ': 
-			 */
-			if (*data == ',')
-				factor++;
-			data++;
-		}
-		while (*data == ' ')
-			data++;
-		while (*data != ' ' && *data != '\0') {
-			if (*data == ',')
-				++*modes_left;
-			data++;
-		}
-		*modes_left *= factor; /* true number of modes = factor (channels) * modes_left (nicks) */
-	} else if (strncasecmp (data, "JOIN ", 5) == 0) {
-		/* Descriptive examples: "JOIN ... 
-		 * #chan"; #chan1,#chan2 one,two"; #chan1,#chan2"; 
-		 */
-		*modes_left = 1; /* At least got one mode */
-		data += 5;
-		while (*data == ' ')
-			data++;
-		while (*data != ' ' && *data != '\0') {
-			/* remember: just counting */
-			if (*data == ',')
-				++*modes_left;
-			*data++;
-		}
-	} else
-		goto out;
-
-#endif
 	return;
 
 out:
@@ -141,17 +88,11 @@ out:
 }
 
 
-#ifdef DEAD_CODE
+
 int
-get_count_multi (const char *data)
+listen_socket (const char *name)
 {
-	unsigned int modes_left;
-
-	count_multi (data, &modes_left);
-
-	return modes_left;
 }
-#endif
 
 
 /* measure the length till SEPARATOR, and PEEK that length */

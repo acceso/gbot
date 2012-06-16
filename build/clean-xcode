@@ -1,9 +1,0 @@
-#!/bin/sh
-
-cd ../src
-
-rm -f gbot
-[ -d gbot.build/gbot.build ] && rm -R gbot.build/gbot.build
-
-cd -
-

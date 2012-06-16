@@ -849,9 +849,6 @@ do_irc (const struct _event *current, const struct servermsg *msg)
 	char fakemsg[MSGBUF], *p;
 	struct servermsg msg2;
 	int end = 0, len = 0;
-#ifdef DEAD_CODE
-	modes_left;
-#endif
 
 	expand_str (sendbuf, msg, current->command, EV_BUF, ADD_SEP);
 
@@ -902,18 +899,8 @@ do_irc (const struct _event *current, const struct servermsg *msg)
 		if (p != send_ptr)
 			free (p);
 
-/* Just let PRIVMSG event is raised, so it'll always be one mode */
-#ifdef DEAD_CODE
-		modes_left = get_count_multi (fakemsg);
-		/* This can be improved, I can parse once, save msg->message 
-		 * and call get_multi__mode_* code afterwards, but there won't be a lot of own messages
-		 * neither a lot of modes_left > 1 
-		 */
-		for (; modes_left > 0; modes_left--)
-			parse_server (fakemsg, &msg2, modes_left);
-#else
+		/* Just let PRIVMSG event is raised, so it'll always be one mode */
 		parse_server (fakemsg, &msg2, 1);
-#endif
 
 		/* IMPORTANT!: Just let propagate some events: */
 		/* FIXME: add other events here */

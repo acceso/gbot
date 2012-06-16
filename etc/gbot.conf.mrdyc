@@ -1,7 +1,6 @@
+
 # server ip IP or host
-#SERVER=irc.irc-hispano.org
-#SERVER=omega.irc-hispano.org
-SERVER=thebe.irc-hispano.org
+SERVER=irc.irc-hispano.org
 
 # Bot nick
 NICK=MrDyc

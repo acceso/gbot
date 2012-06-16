@@ -20,7 +20,6 @@
 #include "lib.h"
 #include "net.h"
 #include "events.h"
-/*#include "session.h"*/
 
 
 static struct bot_data bdata;
@@ -37,6 +36,7 @@ start_bot (struct _server *server)
 	for (;;) {
 		if (botrecv (&msg) == 0)
 			break;
+
 /* I keep this just in case events stop working while coding something new */
 /*		if (!strncasecmp (msg.action, "PING", 4)) {
 			char cad[100];
@@ -44,10 +44,7 @@ start_bot (struct _server *server)
 			botsend (server, cad);
 		}
 */
-		/* TODO: Could manually "inline" these two function here,
-		 * by mixing them, though it's difficult because of events with a 'n' 
-		 */
-/*		session_chk (&msg); */
+
 		look_up_event (&msg);
 	}
 	/*************************************/
@@ -92,7 +89,7 @@ reopen_streams (void)
 
 	stdin = freopen (STDIFILE, "r", stdin);
 
-/* FIXME: usar server->servername en vez de status */
+	/* FIXME: use server->servername instead of status */
 	snprintf (statusfile, PATH_MAX_LEN, "%s/." PACKAGE "/" LOGDIR "/status",
 		  getenv ("HOME"));
 
@@ -196,9 +193,6 @@ defl_val (struct _server *server)
 	strncpy (server->nick, DEFAULT_NICK, NICK_MAX_LENGTH);
 	strncpy (server->ident, DEFAULT_IDENT, 9);
 
-	/* This is a little different, it can't be filled with the config,
-	 * It'll be filled by the session code. FIXME: code that code :) 
-	 */
 	strncpy (server->vhost, DEFAULT_VHOST, 128);
 	strncpy (server->fullname, DEFAULT_FULLNAME, 128);
 
@@ -214,8 +208,10 @@ main (int argc, char *argv[])
 	struct _server srv, *server = &srv;
 	char ev_file[PATH_MAX_LEN] = "";
 	char *ev_file_ptr = ev_file;
+#ifdef RUN_AS_DAEMON
 	pid_t pid;
 	struct sigaction act;
+#endif
 
 	botdata = &bdata;
 
@@ -243,12 +239,8 @@ main (int argc, char *argv[])
 	open_irc_server (server);
 	printf ("OK!\n");
 
-/* TODO: */
-/*	session_init (server); */
-
-	/* Irc-Hispano accepts nicks such in nick:password,
-	 * without this, the nick gets logged with the pass :) 
-	 */
+	/* Some irc servers accept nicks such in nick:password,
+	 * without this, the nick gets logged with the pass. */
 	if (strchr (server->nick, ':'))
 		*strchr (server->nick, ':') = '\0';
 
@@ -256,9 +248,6 @@ main (int argc, char *argv[])
 
 #ifdef RUN_AS_DAEMON
 	printf ("Forking... OK!\n");
-#else
-#define fork() 0
-#endif
 
 	switch (pid = fork ()) {
 	case 0: /* Child */
@@ -292,6 +281,12 @@ main (int argc, char *argv[])
 	default: /* parent */
 		_exit (EXIT_SUCCESS);
 	}
+
+#else /* RUN_AS_DAEMON */
+
+	start_bot (server);
+
+#endif
 
 	return EXIT_SUCCESS;
 

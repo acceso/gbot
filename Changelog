@@ -2,10 +2,12 @@ gbot-XXXXXX
 -----------
 ()
 
-- An event with this condition: ${cond null % 20} should match out of five
-  times, this didn't work before (it mached four out five), it does now.
+- An event like: ${cond null % 20} will match one out of five times.
 - IPv6 support.
 - Re-tested under opensolaris/intel
+- Removed xcode's project.pbxproj as I have not tested in years.
+- Removed old and session code.
+
 
 
 gbot-051103
@@ -14,9 +16,9 @@ gbot-051103
 
 - Log in lowercase.
 - Further autotools work:
-	- Made dist-gzip et al. work.
-	- regex script it's now compiled but not installed
-	- add more --enable... --disable.. checks.
+  - Make dist-gzip et al. work.
+  - Regex script it's now compiled but not installed.
+  - Add more --enable... --disable.. checks.
 - Basic support for CTCP: action logged right, version, ping, userinfo and 
   time. Mostly implemented in the events file!!
 - Bot ported to the Darwin kernel (MacOs X). There is a bug though, and
@@ -86,4 +88,5 @@ gbot-030803
 - Fixed a bug which showed bot's password in the log (irc-hispano).
 - New variables: ${date} y ${time}.
 - Improved configure.ac.
+
 

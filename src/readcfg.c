@@ -19,7 +19,9 @@
 static void
 store_cfg_parm (struct _server *server, char *lvalue, char *rvalue)
 {
-	if (strncasecmp (lvalue, "SERVER", 6) == 0)
+	if (strncasecmp (lvalue, "LISTEN", 6) == 0)
+		listen_socket (rvalue);
+	else if (strncasecmp (lvalue, "SERVER", 6) == 0)
 		strncpy (server->hostname, rvalue, 128);
 	else if (strncasecmp (lvalue, "PORT", 4) == 0)
 		server->port = atoi (rvalue);
