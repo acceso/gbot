@@ -68,6 +68,6 @@ Default events file.
 Thousands!!!
 
 .SH AUTHOR
-José Sánchez <jose@helcom.es>
+José Sánchez
 
 
