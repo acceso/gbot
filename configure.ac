@@ -4,7 +4,7 @@ define(VERSION_NUM,[0.0.051103])
 define(VERSION_STR,["Silent Bot"])
 
 define(TARGET,[gbot])
-define(ADDR,[jose@ssanchez.net])
+define(ADDR,[jose@hidden_domain.net])
 
 
 dnl Init
