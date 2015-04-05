@@ -182,7 +182,7 @@ else
 fi
 
 if test "$enable_warnings" == "yes"; then
-	CFLAGS="$CFLAGS -pedantic -Wall"
+	CFLAGS="$CFLAGS -Wpedantic -Wall"
 fi
 
 dnl this just enables fnmatch for text patterns on events, 
